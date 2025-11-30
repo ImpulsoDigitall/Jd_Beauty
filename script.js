@@ -1,5 +1,5 @@
 // --- CONFIGURAÇÃO ---
-const seuNumeroWhatsApp = "62981972062"; 
+const seuNumeroWhatsApp = "981972062"; 
 let slideIndex = 0; 
 
 let todosProdutos = [];
@@ -450,3 +450,4 @@ window.onclick = function(event) {
     }
 
 }
+
