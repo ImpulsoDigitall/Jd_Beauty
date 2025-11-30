@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JD Beauty | Fragrâncias Exclusivas</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+    <div id="quickViewModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharQuickView()">&times;</span>
+            <div class="quick-view-body">
+                <div class="qv-image-container">
+                    <img id="qvImage" class="qv-image" src="" alt="Imagem do Produto">
+                </div>
+                <div class="qv-details">
+                    <h3 id="qvName" class="qv-name"></h3>
+                    <div class="qv-price-container">
+                        <span id="qvOldPrice" class="qv-old-price"></span>
+                        <span id="qvNewPrice" class="qv-new-price"></span>
+                    </div>
+                    <p id="qvDescription" class="qv-description"></p>
+                    <button id="qvAddToCartBtn" class="qv-btn-add" onclick="">
+                        <i class="fas fa-cart-plus"></i> ADICIONAR AO CARRINHO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharCarrinho()">&times;</span>
+            <h2>Seu Carrinho JD Beauty</h2>
+            <div id="cartItemsContainer">
+            </div>
+            <div id="cartTotal" class="cart-total"></div>
+            <button class="btn-whatsapp-checkout" onclick="finalizarPedidoWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Finalizar Pedido via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <div class="promo-bar">
+        FRETE GRÁTIS PARA TODO O BRASIL EM COMPRAS ACIMA DE R$ 199,00
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">JD Beauty</a>
+            <div class="nav-icons">
+                <i class="fas fa-search" onclick="toggleSearchBar()"></i>
+                <i class="fas fa-user"></i>
+                <div class="cart-icon-container" onclick="abrirCarrinho()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-container-wrapper">
+        <div class="search-bar" id="searchBar">
+            <input 
+                type="text" 
+                id="searchInput" 
+                onkeyup="mostrarSugestoes(this.value)" 
+                onkeydown="handleEnter(event)"
+                placeholder="Pesquisar perfumes, hidratantes, kits..."
+                autocomplete="off"
+            >
+            <ul id="suggestionsList" class="suggestions-list" style="display: none;">
+                </ul>
+        </div>
+    </div>
+
+    <section class="hero">
+        
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1596436217435-08102371994b?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-content">
+                <h1>A Essência da Beleza</h1>
+                <p style="font-size: 1.2rem; margin-bottom: 20px;">Descubra a coleção de fragrâncias exclusivas JD.</p>
+                <a href="#produtos" class="btn-hero">CONFIRA AS OFERTAS</a>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1620743627798-25e142e88235?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-content">
+                <h1>Promoção Especial</h1>
+                <p style="font-size: 1.2rem; margin-bottom: 20px;">Compre 3, leve 4 Body Splashes!</p>
+                <a href="#produtos" class="btn-hero" style="background-color: black;">VER PROMOÇÃO</a>
+            </div>
+        </div>
+        
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1624006132174-a035d886616e?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-content">
+                <h1>Lançamento JD Gold</h1>
+                <p style="font-size: 1.2rem; margin-bottom: 20px;">O novo hidratante com partículas de ouro.</p>
+                <a href="#produtos" class="btn-hero">GARANTA O SEU</a>
+            </div>
+        </div>
+
+        <div class="dot-container" id="dotContainer">
+            </div>
+        
+    </section>
+
+    <div class="container" id="produtos">
+        <h2 class="section-title">Destaques <span>JD Beauty</span></h2>
+        
+        <div class="product-controls">
+            <div class="control-group">
+                <label for="sort-select">Ordenar por:</label>
+                <select id="sort-select" onchange="aplicarFiltrosEOrdenacao()">
+                    <option value="default">Relevância</option>
+                    <option value="price-asc">Preço: Menor para Maior</option>
+                    <option value="price-desc">Preço: Maior para Menor</option>
+                    <option value="name-asc">Nome: A-Z</option>
+                    <option value="discount-desc">Maior Desconto</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="category-select">Filtrar por:</label>
+                <select id="category-select" onchange="aplicarFiltrosEOrdenacao()">
+                    <option value="all">Todas as Categorias</option>
+                    </select>
+            </div>
+        </div>
+        <div class="products-grid" id="grid-produtos">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 JD Beauty. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
